@@ -34,3 +34,12 @@ perl -pi -e 's/"printOther()/"printOther() UPDATED/;' other.h
 make
 ./exe
 set +x
+
+sleep 1
+echo
+echo "RENAME other.h -> newname.h (make has an ERROR)"
+set -x
+mv other.h newname.h
+perl -pi -e 's/other.h/newname.h/;' hello.h
+make
+set +x
